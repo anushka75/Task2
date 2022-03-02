@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  server:
+    build:  ./api
+    links:
+    - db
+    ports: 
+    - "80:5000"
+    volumes: 
+    - ./api:/app
+    environment: 
+      FLASK_ENV: development
+  db:
+    image: mysql/mysql-server:latest
+    ports:
+      - "90:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "Groundtruth@1234"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    platform: linux/amd64
+  web :
+    build: ./imagesearch
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./imagesearch:/user/src/app
+    depends_on: 
+      - server

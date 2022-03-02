@@ -1,0 +1,9 @@
+.conatiner{
+    margin:5% 10%;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    grid-gap: 10px;
+  }
